@@ -69,7 +69,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `diydb`;
-INSERT INTO `location` (`id`, `name`) VALUES (1, 'Entry Way ');
+INSERT INTO `location` (`id`, `name`) VALUES (1, 'Entry Way');
 INSERT INTO `location` (`id`, `name`) VALUES (2, 'Office');
 INSERT INTO `location` (`id`, `name`) VALUES (3, 'Guest Bathroom');
 INSERT INTO `location` (`id`, `name`) VALUES (4, 'Guest Bedroom');
