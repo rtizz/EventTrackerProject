@@ -40,13 +40,13 @@ CREATE TABLE IF NOT EXISTS `project` (
   `interior` TINYINT NULL,
   `est_cost` DOUBLE NULL,
   `actual_cost` DOUBLE NULL,
-  `date_entered` DATETIME NULL,
-  `date_started` DATETIME NULL,
-  `date_finished` DATETIME NULL,
-  `location_id` INT NOT NULL,
+  `date_entered` DATE NULL,
+  `date_started` DATE NULL,
+  `date_finished` DATE NULL,
+  `location_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_home_projects_location_idx` (`location_id` ASC),
-  CONSTRAINT `fk_home_projects_location`
+  INDEX `fk_project_location_idx` (`location_id` ASC),
+  CONSTRAINT `fk_project_location`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
     ON DELETE NO ACTION
@@ -88,6 +88,7 @@ INSERT INTO `location` (`id`, `name`) VALUES (16, 'Garden');
 INSERT INTO `location` (`id`, `name`) VALUES (17, 'FirePit');
 INSERT INTO `location` (`id`, `name`) VALUES (18, 'Patio');
 INSERT INTO `location` (`id`, `name`) VALUES (19, 'Driveway');
+INSERT INTO `location` (`id`, `name`) VALUES (20, 'Default');
 
 COMMIT;
 
@@ -97,13 +98,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `diydb`;
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (1, 'Sod Replacement', 'Replace dead patches of grass', 0, 0, 2500.00, NULL, '2022-10-31', '2023-02-15', '2023-03-31', 14);
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (2, 'Garden Perimeter path', 'Create a 3\' path surrounding garden for aesthetics', 1, 0, 300.00, NULL, '2023-01-31', NULL, NULL, 16);
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (3, 'Replace Sprinkler Controller', 'Current is outdated and analog, needs to be updated to digital.', 1, 0, 150.00, NULL, NULL, NULL, NULL, 14);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (1, 'Sod Replacement', 'Replace dead patches of grass', 0, 0, 2500.50, NULL, '2022-10-31', '2023-02-15', '2023-03-31', 14);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (2, 'Garden Perimeter path', 'Create a 3\' path surrounding garden for aesthetics', 1, 0, 300.99, NULL, '2023-01-31', NULL, NULL, 16);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (3, 'Replace Sprinkler Controller', 'Current is outdated and analog, needs to be updated to digital.', 1, 0, 150.50, NULL, NULL, NULL, NULL, 14);
 INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (4, 'Paint Master Bathroom', 'Wife not happy with color and wants to change it', 1, 1, 200.00, NULL, NULL, NULL, NULL, 12);
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (5, 'Paint Master Bedroom', 'In need of color update', 1, 1, 300.00, NULL, NULL, NULL, NULL, 10);
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (6, 'Stain/Weatherproof Deck', 'Had to wait a year for wood to dry. Deck ready for stain to protect against rain', 1, 0, 25.00, NULL, NULL, NULL, NULL, 15);
-INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (7, 'Replace Bath/Shower', 'Outdated prefit tub shower needs to be updated with walk in shower to increase home value', 0, 1, 7000.00, NULL, NULL, NULL, NULL, 12);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (5, 'Paint Master Bedroom', 'In need of color update', 1, 1, 299.99, NULL, NULL, NULL, NULL, 10);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (6, 'Stain/Weatherproof Deck', 'Had to wait a year for wood to dry. Deck ready for stain to protect against rain', 1, 0, 25.25, NULL, NULL, NULL, NULL, 15);
+INSERT INTO `project` (`id`, `task`, `description`, `diy`, `interior`, `est_cost`, `actual_cost`, `date_entered`, `date_started`, `date_finished`, `location_id`) VALUES (7, 'Replace Bath/Shower', 'Outdated prefit tub shower needs to be updated with walk in shower to increase home value', 0, 1, 7000.01, NULL, NULL, NULL, NULL, 12);
 
 COMMIT;
 

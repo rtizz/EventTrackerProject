@@ -1,11 +1,16 @@
 package com.skilldistillery.diy.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Location {
@@ -17,6 +22,20 @@ public class Location {
 	private int id;
 	
 	private String name;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="location")
+	@Column(name="project")
+	private List<Project> projects;
+	
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 
 	public int getId() {
 		return id;
@@ -33,6 +52,7 @@ public class Location {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -53,9 +73,10 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return "Location [id=" + id + ", name=" + name + "]";
+		return "Location [id=" + id + ", name=" + name + ", projects=" + projects + "]";
 	}
-	
+
+
 	
 	
 }

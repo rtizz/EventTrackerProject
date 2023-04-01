@@ -1,7 +1,9 @@
 package com.skilldistillery.diy.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,7 +34,7 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		loc = em.find(Location.class, 1);
+		loc = em.find(Location.class, 14);
 	}
 
 	@AfterEach
@@ -42,9 +44,15 @@ class LocationTest {
 	}
 
 	@Test
-	void test_Location_Mapping() {
+	void test_Location() {
 		assertNotNull(loc);
-		assertEquals("Entry Way", loc.getName());
+		assertEquals("Back Yard", loc.getName());
+	}
+	
+	@Test
+	void test_Location_Project_Mapping() {
+		assertNotNull(loc.getProjects());
+		assertFalse(loc.getProjects().size() == 0);
 	}
 
 }
