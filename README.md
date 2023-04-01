@@ -19,12 +19,81 @@ The repositiories and services hold similar format for the data it is mapped to.
 2. Service - interface - holds signatures to be implemented by impl.
 3. ServiceImpl - holds logic for respective CRUD operations. Calls back to repository(1) via autowire mapping.
 4. Controller - @RestController/RequestMapping("api") - Calls back to method logic in ServiceImpl through autowiring Service object. <br>
-Within the Controllers for each entity hold the same method functionality. <br>
+Within the Controllers for each entity hold the same method functionality. The following are the respective methods and their REST route URIs <br>
 1. listAll - get
+```java
+	@GetMapping("locations")
+	public List<Location> listLocations() {
+		return locService.listAllLocations();
+	}
+```
 2. listOne - get
-3. create - post
+```java
+	@GetMapping("locations/{locId}")
+	public Location singleLocation(@PathVariable int locId, HttpServletResponse res) {
+		Location location = locService.getSingleLocation(locId);
+		if (location == null) {
+			res.setStatus(404);
+		}
+		return location;
+	}
+```
+3. create - post 
+```java
+	@PostMapping("locations")
+	public Location createLocation(@RequestBody Location location, HttpServletResponse res, HttpServletRequest req) {
+		try {
+		location = locService.create(location);
+		if (location == null) {
+			res.setStatus(404);
+		} else {
+			res.setStatus(201);
+			res.setHeader("Location", req.getRequestURL().append("/").append(location.getId()).toString());
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			location = null;	
+		}
+		return location;
+	}
+```
 4. update - put
+```java
+	@PutMapping("locations/{locId}")
+	public Location updateLocation(@PathVariable int locId, @RequestBody Location location, HttpServletResponse res) {
+		try {
+			location = locService.update(locId, location);
+			if (location == null) {
+				res.setStatus(404);
+			} else {
+				res.setStatus(200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return location;
+	}
+```
 5. delete - delete
+```java
+	@DeleteMapping("locations/{locId}")
+	public void deleteLocation(@PathVariable int locId, HttpServletResponse res, HttpServletRequest req){
+	 try {
+	 if (locService.delete(locId) ) {
+		 res.setStatus(204);
+		 
+	 } else { 
+		 res.setStatus(404);
+	 }
+	} catch (Exception e) {
+		e.printStackTrace();
+		res.setStatus(400);
+	}
+	}
+```
+The respective controller method maps to the front end and passes the data to the ServiceImpl to conduct the logic and return the data. 
 <br>
 <br>
 Lastly there is an additional directory named postmanTests which holds the JSON test file to be imported locally and tested if desired. 
