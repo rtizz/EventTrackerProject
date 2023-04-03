@@ -28,7 +28,7 @@ Within the Controllers for each entity hold the same method functionality. The f
 | POST      | `/api/projects`      | Representation of a new _location_ resource | Description of the result of the operation | **
 | PUT       | `/api/projects/#`   | Representation of a new version of _location_ `#` |
 | DELETE    | `/api/projects/#`   |              | |
-<br>
+
 ### Location 
 | HTTP Verb | URI                  | Request Body | Response Body |
 |-----------|----------------------|--------------|---------------|
@@ -37,7 +37,7 @@ Within the Controllers for each entity hold the same method functionality. The f
 | POST      | `/api/locations`      | Representation of a new _location_ resource | Description of the result of the operation | **
 | PUT       | `/api/locations/#`   | Representation of a new version of _location_ `#` |
 | DELETE    | `/api/locations/#`   |              | |
-<br>
+
 The following is a code breakout of locations. Pojects is almost identical but with different naming convention.
 1. listAll - get
 ```java
