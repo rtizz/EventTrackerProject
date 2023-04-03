@@ -20,6 +20,15 @@ The repositiories and services hold similar format for the data it is mapped to.
 3. ServiceImpl - holds logic for respective CRUD operations. Calls back to repository(1) via autowire mapping.
 4. Controller - @RestController/RequestMapping("api") - Calls back to method logic in ServiceImpl through autowiring Service object. <br>
 Within the Controllers for each entity hold the same method functionality. The following are the respective methods and their REST route URIs <br>
+### Location 
+#### Project is the same format except 'projects' in URI
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| GET       | `/api/locations`      |              | Collection of representations of all _locations_ resources |collection** endpoint |
+| GET       | `/api/locations/#`   |              | Representation of _locations_ `#` |
+| POST      | `/api/locations`      | Representation of a new _location_ resource | Description of the result of the operation | **
+| PUT       | `/api/locations/#`   | Representation of a new version of _location_ `#` |
+| DELETE    | `/api/locations/#`   |              | |
 1. listAll - get
 ```java
 	@GetMapping("locations")
