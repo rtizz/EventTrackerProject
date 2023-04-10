@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -36,6 +38,8 @@ public class Project {
 	@Column(name="actual_cost")
 	private Double actualCost;
 	
+	
+	@CreationTimestamp
 	@Column(name="date_entered")
 	private LocalDate dateEnter;
 	
