@@ -1,4 +1,4 @@
-# EventTrackerProject - LOADED ON AWS
+# EventTrackerProject 
 
 ## Description
 This project tracks all projects around respective properties by logging work to be done, diy cabable or outsource, as well as cost and schedule analysis. 
