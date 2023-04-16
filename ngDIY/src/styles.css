@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+#styleHead {
+  font-size: x-large;
+  font-stretch: expanded;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(33, 129, 129);
+}
+
+#projectDetail {
+  table-layout: auto;
+}
+
+#detailTable {
+  width: 400px;
+}
+
+button {
+  color: black;
+}
+
+#detailLocation {
+  text-align: center;
+}
+
+#taskLocation {
+  text-align: center;
+}
+
+#detailHead {
+  color: red;
+
+}
+
+#title {
+  color: rgb(33, 129, 129);
+}

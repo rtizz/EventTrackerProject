@@ -1,0 +1,168 @@
+<table class="table table-striped table-dark" *ngIf="!selected">
+  <thead id="styleHead">
+    <tr>
+      <td>ID</td>
+      <td>Task</td>
+      <td>Location</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plist of projects">
+      <td>{{plist.id}}</td>
+      <td>{{plist.task}} </td>
+      <td>{{plist.location.name}}</td>
+      <td><button class="btn btn-info"  (click)="setSelected(plist)">Details</button></td>
+      <td><button class="btn btn-danger" (click)="deleteConfirm(plist.id)">X</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div id = "addProject" *ngIf="!selected">
+  <form>
+    <input type="text" name="task" placeholder="New Task" [(ngModel)]="newProject.task">
+    <select name="location"[(ngModel)]="newProject.location.id">
+      <option value="2">Office</option>
+      <option value="3">Guest Bathroom</option>
+      <option value="4">Guest Bedroom</option>
+      <option value="5">Dining Room</option>
+      <option value="6">Kitchen</option>
+      <option value="7">Laundry Room</option>
+      <option value="8">Pantry</option>
+      <option value="9">Living Room</option>
+      <option value="10">Master Bedroom</option>
+      <option value="11">Master Closet</option>
+      <option value="12">Master Bathroom</option>
+      <option value="13">Front Yard</option>
+      <option value="14">Back Yard</option>
+      <option value="15">Deck</option>
+      <option value="16">Garden</option>
+      <option value="18">Patio</option>
+      <option value="21">Garage</option>
+      </select>
+    <button class="btn btn-success" (click)="addProject(newProject)">Add</button>
+  </form>
+</div>
+
+<div id="projectDetail" class="table table-striped table-dark" *ngIf="selected && !editProject">
+  <table id="detailTable">
+    <thead id="styleHead">
+      <tr>
+        <td>ID</td>
+        <td id="taskLocation">Task</td>
+        <td>Location</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="detailHead" >
+        <td>{{selected.id}}</td>
+        <td>{{selected.task}} </td>
+        <td id="detailLocation">{{selected.location.name}}</td>
+      </tr>
+      <tr>
+        <td id="title">Description:</td>
+        <td>{{selected.description}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">DIY:</td>
+        <td>{{selected.diy}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">Interior:</td>
+        <td>{{selected.interior}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">Estimated Cost:</td>
+        <td>{{selected.estCost}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">Actual Cost:</td>
+        <td>{{selected.actual_cost}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">Start Date:</td>
+        <td>{{selected.dateStarted}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="title">Finish Date:</td>
+        <td>{{selected.dateFinished}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class = "btn btn-warning"(click)="displayTable()">Back</button>
+<button class = "btn btn-success" (click)="setEditProject()">Edit</button>
+</div>
+
+<div id="projectEdit" *ngIf="editProject">
+  <form >
+    <table>
+      <tr>
+        <td>Task:</td>
+        <td><input type="text" name="task" [(ngModel)]="editProject.task"></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>
+          <select name="location"[(ngModel)]="editProject.location.id">
+          <option value="2">Office</option>
+          <option value="3">Guest Bathroom</option>
+          <option value="4">Guest Bedroom</option>
+          <option value="5">Dining Room</option>
+          <option value="6">Kitchen</option>
+          <option value="7">Laundry Room</option>
+          <option value="8">Pantry</option>
+          <option value="9">Living Room</option>
+          <option value="10">Master Bedroom</option>
+          <option value="11">Master Closet</option>
+          <option value="12">Master Bathroom</option>
+          <option value="13">Front Yard</option>
+          <option value="14">Back Yard</option>
+          <option value="15">Deck</option>
+          <option value="16">Garden</option>
+          <option value="18">Patio</option>
+          <option value="21">Garage</option>
+          </select></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" name="description"  [(ngModel)]="editProject.description"></td>
+      </tr>
+      <tr>
+        <td>DIY?</td>
+        <td><input type="checkbox" name="diy" [(ngModel)]="editProject.diy"></td>
+      </tr>
+      <tr>
+        <td>Interior?</td>
+        <td>   <input type="checkbox" name="interior" [(ngModel)]="editProject.interior"></td>
+      </tr>
+      <tr>
+        <td>Estimated Cost</td>
+        <td><input type="number" name="estCost" [(ngModel)]="editProject.estCost"></td>
+      </tr>
+      <tr>
+        <td>Actual Cost</td>
+        <td><input type="number" name="actualCost"  [(ngModel)]="editProject.actual_cost"></td>
+      </tr>
+      <tr>
+        <td>Date Started</td>
+        <td><input type="date" name="dateStarted"  [(ngModel)]="editProject.dateStarted"></td>
+      </tr>
+      <tr>
+        <td>Date Finished</td>
+        <td><input type="date" name="dateFinished"  [(ngModel)]="editProject.dateFinished"></td>
+      </tr>
+      <tr>
+        <td><button class = "btn btn-success" (click)="updateProject(editProject)">Update</button></td>
+        <td><button class = "btn btn-danger" (click)="displayTable()">Cancel</button></td>
+      </tr>
+  </table>
+  </form>
+</div>
